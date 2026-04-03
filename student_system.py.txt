@@ -1,0 +1,59 @@
+students = []
+
+while True:
+    print("\n1. Add students")
+    print("2. View students")
+    print("3. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        name = input("Enter student name: ")
+
+        marks = []
+        for i in range(3):
+            m = int(input(f"Enter marks {i+1}: "))
+            marks.append(m)
+
+        avg = sum(marks) / len(marks)
+
+        if avg >= 75:
+            grade = "A"
+        elif avg >= 50:
+            grade = "B"
+        else:
+            grade = "Fail"
+
+        student = {
+            "name": name,
+            "marks": marks,
+            "avg": avg,
+            "grade": grade
+        }
+
+        students.append(student)
+
+        print("Student added successfully!")
+
+
+    elif choice == "2":
+
+        if len(students) == 0:
+
+            print("No students added yet.")
+
+        else:
+
+            print("\n--- Student Records ---")
+
+            for s in students:
+                print(f"Name: {s['name']} | Avg: {s['avg']:.2f} | Grade: {s['grade']}")
+
+
+    elif choice == "3":
+        print("Exiting...")
+        break
+
+    else:
+        print("Invalid choice")
+

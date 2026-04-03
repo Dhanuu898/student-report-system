@@ -32,22 +32,29 @@ while True:
         }
 
         students.append(student)
+        file = open("students.txt","a")
+        file.write(name + "," + str(marks[0]) + "," + str(marks[1]) + "," + str(marks[2]) + "\n")
+        file.close()
 
         print("Student added successfully!")
 
 
     elif choice == "2":
-
-        if len(students) == 0:
-
-            print("No students added yet.")
-
-        else:
-
+        try:
+            file = open("students.txt", "r")
             print("\n--- Student Records ---")
 
-            for s in students:
-                print(f"Name: {s['name']} | Avg: {s['avg']:.2f} | Grade: {s['grade']}")
+            for line in file:
+                data = line.strip().split(",")
+                name = data[0]
+                marks = data[1:]
+
+                print(f"Name: {name} | Marks: {marks}")
+                file.close()
+
+        except:
+            print("No data found.")
+
 
 
     elif choice == "3":
